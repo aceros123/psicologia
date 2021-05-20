@@ -4,10 +4,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\TestController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\FormsController;
-
+use App\Http\Controllers\Admin\PreguntasController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,3 +22,5 @@ Route::get('/', LoginController::class);
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', DashboardController::class)->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->resource('formulario', FormsController::class)->names('Admin.Forms');
+
+Route::middleware(['auth:sanctum', 'verified'])->resource('formulario/preguntas', PreguntasController::class)->names('Admin.Preguntas');

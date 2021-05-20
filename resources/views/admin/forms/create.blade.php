@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
                 {!! Form::label('slug', 'Slug') !!}
-                {!! Form::text('slug', null, ['class' => 'form-control', 'placeholder'=> 'ejemplo: hola-como-esta', 'readonly']) !!}
+                {!! Form::text('slug', null, ['class' => 'form-control', 'readonly']) !!}
                
                 @error('slug')
                     <span class="text-danger">{{$message}}</span>

@@ -24,7 +24,6 @@
     <div class="contenedor grid-4">
         <!-- tarjeta a repetir -->
         @foreach ($formularios as $formulario)
-
         <div class="card card-mod">
             <img src="{{ asset('img/prueba.jpg') }}" alt="">
             <div class="opacidad">
@@ -39,11 +38,10 @@
                         <a class="dropdown-item" href="{{route('Admin.Forms.edit', $formulario)}}">Editar</a>
                     </li>
                     <li>
-                        <form action="{{route('Admin.Forms.destroy', $formulario)}}" method="post">
+                        <form action="{{route('Admin.Forms.destroy', $formulario)}}" method="post" class="formulario-eliminar">     
                             @csrf
                             @method('delete')
-
-                            <input class="dropdown-item" type="submit" value="Eliminar">
+                            <input class="dropdown-item" type="submit" value="Eliminar" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         </form>
                     </li>
                 </ul>
@@ -58,4 +56,31 @@
         </a>
     </div>
 </section>
+@endsection
+@section('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script>
+    $(".formulario-eliminar").submit(function (e) { 
+            e.preventDefault();
+            
+      
+        Swal.fire({
+        title: '¿Esta seguro de eliminar este formulario?',
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: `Cancelar`,
+        denyButtonText: `Eliminar`,
+        }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            Swal.fire('Cancelado', '', 'info')
+
+         } else if (result.isDenied) {
+            Swal.fire('El formulario se a eliminado con exito', '', 'success') 
+            this.submit();
+         }
+        })
+    });
+    </script>
 @endsection
