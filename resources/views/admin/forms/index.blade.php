@@ -34,7 +34,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="message-text" class="col-form-label">Slug</label>
-                        <input class="form-control" id="slug" disabled="true"></input>
+                        <input class="form-control" id="slug" disabled="true">
                         <span id="taskError" class="alert-message"></span>
                     </div>
                 </form>
@@ -76,7 +76,7 @@
                         <form action="{{route('Admin.Forms.destroy', $formulario)}}" method="post" class="formulario-eliminar">
                             @csrf
                             @method('delete')
-                            <input class="dropdown-item" type="submit" value="Eliminar" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <input class="dropdown-item" type="submit" value="Eliminar" data-bs-toggle="modal1" data-bs-target="#exampleModal1">
                         </form>
                     </li>
                 </ul>

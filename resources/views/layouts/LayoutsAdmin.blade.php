@@ -82,7 +82,7 @@
     {{-- liveware --}}
     @livewireScripts
     {{-- scrip propio --}}
-    <script src="{{ URL::asset('js/style.js') }}"></script>
+    <script src="{{ URL::asset('js/style.carlos.js') }}"></script>
     {{-- slug --}}
     @yield('js')
  
