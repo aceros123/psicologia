@@ -31,7 +31,6 @@ function agregarForm() {
     let _URL = `localhost/formulario`
     let _token = $('meta[name="csrf-token"]').attr('content');
 
-    console.log(_token + " "+ _URL)
     $.ajax({
         type: "POST",
         url: `/formulario`,
@@ -44,54 +43,54 @@ function agregarForm() {
         success: function (data) {
             formulario = data
             $('#list').append(`
-            <div class="card card-mod">
-            <img src="{{ asset('img/prueba.jpg') }}" alt="">
-            <div class="opacidad">
-                <p>${formulario.descripcion}</p>
+                <div class="card card-mod">
+                <img src="{{ asset('../img/prueba.jpg') }}" alt="">
+                <div class="opacidad">
+                    <p>${formulario.descripcion}</p>
+                </div>
+                <div class="btn-group dropend">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-bars" aria-hidden="true"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="{{route('Admin.Forms.edit', $formulario)}}">Editar</a>
+                        </li>
+                        <li>
+                            <form action="{{route('Admin.Forms.destroy', $formulario)}}" method="post" class="formulario-eliminar">
+                                @csrf
+                                @method('delete')
+                                <input class="dropdown-item" type="submit" value="Eliminar" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            </form>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="btn-group dropend">
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-bars" aria-hidden="true"></i>
-                </button>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a class="dropdown-item" href="{{route('Admin.Forms.edit', $formulario)}}">Editar</a>
-                    </li>
-                    <li>
-                        <form action="{{route('Admin.Forms.destroy', $formulario)}}" method="post" class="formulario-eliminar">
-                            @csrf
-                            @method('delete')
-                            <input class="dropdown-item" type="submit" value="Eliminar" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        </form>
-                    </li>
-                </ul>
-            </div>
-        </div>
             `);
+            Slug.value =  " ";
             $('#recipient-name').val(' ');
-            $('#slug').val(' ');
             $('#exampleModal').modal('hide');
 
+        document.location.reload();
         },
-        error: function(response){
-            console.log(response)
-          //  $('#taskError').text(response.responseJSON.errors.formulario);
+        error: (err) => {
+            throw err //cuando detecte el error me detiene la ejecucion y manda mensaje por consola
         }
     });
 
 }
-var exampleModal = document.getElementById('exampleModal')
+const exampleModal = document.getElementById('exampleModal')
 exampleModal.addEventListener('show.bs.modal', function (event) {
     // Button that triggered the modal
-    var button = event.relatedTarget
+    const button = event.relatedTarget
     // Extract info from data-bs-* attributes
-    var recipient = button.getAttribute('data-bs-whatever')
+    const recipient = button.getAttribute('data-bs-whatever')
     // If necessary, you could initiate an AJAX request here
     // and then do the updating in a callback.
     //
     // Update the modal's content.
-    var modalTitle = exampleModal.querySelector('.modal-title')
-    var modalBodyInput = exampleModal.querySelector('.modal-body input')
+    const modalTitle = exampleModal.querySelector('.modal-title')
+    const modalBodyInput = exampleModal.querySelector('.modal-body input')
 
     modalTitle.textContent = 'Nuevo ' + recipient
   
