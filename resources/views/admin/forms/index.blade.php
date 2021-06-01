@@ -19,9 +19,44 @@
         </div>
     </div>
 </section>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Titulo</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Slug</label>
+                        <input class="form-control" id="slug" disabled="true"></input>
+                        <span id="taskError" class="alert-message"></span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="Guardar-formulario">Guardar formulario</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-<section class="list">
+<section class="list" id="list">
     <div class="contenedor grid-4">
+        <div class="card card-mod" id="crear-form" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="Formulario">
+            <h2><i class="fa fa-plus fa-6" aria-hidden="true"></i></h2>
+        </div>
+        {{-- <a href="{{route('Admin.Forms.create')}}">
+        <div class="card card-mod" id="create">
+            <h2><i class="fa fa-plus fa-6" aria-hidden="true"></i></h2>
+        </div>
+        </a> --}}
         <!-- tarjeta a repetir -->
         @foreach ($formularios as $formulario)
         <div class="card card-mod">
@@ -38,7 +73,7 @@
                         <a class="dropdown-item" href="{{route('Admin.Forms.edit', $formulario)}}">Editar</a>
                     </li>
                     <li>
-                        <form action="{{route('Admin.Forms.destroy', $formulario)}}" method="post" class="formulario-eliminar">     
+                        <form action="{{route('Admin.Forms.destroy', $formulario)}}" method="post" class="formulario-eliminar">
                             @csrf
                             @method('delete')
                             <input class="dropdown-item" type="submit" value="Eliminar" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -49,38 +84,12 @@
         </div>
         @endforeach
         <!-- fin tarjeta a repetir -->
-        <a href="{{route('Admin.Forms.create')}}">
-            <div class="card card-mod" id="create">
-                <h2><i class="fa fa-plus fa-6" aria-hidden="true"></i></h2>
-            </div>
-        </a>
+
     </div>
 </section>
 @endsection
 @section('js')
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="{{asset('vendor/jQuery-Plugin-stringToSlug-1.3/jquery.stringToSlug.min.js')}}"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-    <script>
-    $(".formulario-eliminar").submit(function (e) { 
-            e.preventDefault();
-            
-      
-        Swal.fire({
-        title: '¿Esta seguro de eliminar este formulario?',
-        showDenyButton: true,
-        showCancelButton: false,
-        confirmButtonText: `Cancelar`,
-        denyButtonText: `Eliminar`,
-        }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-            Swal.fire('Cancelado', '', 'info')
-
-         } else if (result.isDenied) {
-            Swal.fire('El formulario se a eliminado con exito', '', 'success') 
-            this.submit();
-         }
-        })
-    });
-    </script>
 @endsection
