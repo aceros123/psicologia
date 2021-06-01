@@ -22,18 +22,20 @@ $(".formulario-eliminar").submit(function (e) {
     })
 });
 //prueba de modal 
+
 document.getElementById("Guardar-formulario").addEventListener("click", agregarForm);
-
+//detecta el clic del id guardar-formulario
 function agregarForm() {
-
-    var descripcion = $('#recipient-name').val();
-    var Slug = $('#slug').val();
-    let _URL = `localhost/formulario`
+//inicia la funcion agregarForm
+    let descripcion = $('#recipient-name').val();
+    let Slug = $('#slug').val();
+    let _URL = `/formulario`
     let _token = $('meta[name="csrf-token"]').attr('content');
 
     $.ajax({
+        Headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         type: "POST",
-        url: `/formulario`,
+        url: _URL,
         data: {
             descripcion: descripcion,
             slug: Slug,
@@ -78,6 +80,26 @@ function agregarForm() {
         }
     });
 
+}
+//termina la funcion de agregar formulario
+//funcion de borrar formulario
+function deleteForm(formulario){
+    let url = `/formulario/${formulario.id}`
+    let token = $('meta[name="csrf-token"]').attr('content');
+
+ 
+    $.ajax({
+        Headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        url : url,
+        type: 'DELETE',
+
+        success: function(response){   
+            console.log(response)
+            //$('#deleteform'+formulario.id).remove(); 
+        
+        }
+
+    });
 }
 const exampleModal = document.getElementById('exampleModal')
 exampleModal.addEventListener('show.bs.modal', function (event) {

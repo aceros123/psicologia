@@ -73,11 +73,12 @@
                         <a class="dropdown-item" href="{{route('Admin.Forms.edit', $formulario)}}">Editar</a>
                     </li>
                     <li>
-                        <form action="{{route('Admin.Forms.destroy', $formulario)}}" method="post" class="formulario-eliminar">
+                        <a class="dropdown-item" onclick="deleteForm({{$formulario}})" id="#deleteform" data-bs-toggle="eliminarmodal" data-bs-target="#eliminarmodal">Eliminar</a>
+                        {{-- <form action="{{route('Admin.Forms.destroy', $formulario)}}" method="post" class="formulario-eliminar">
                             @csrf
                             @method('delete')
-                            <input class="dropdown-item" type="submit" value="Eliminar" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        </form>
+                            <input class="dropdown-item" type="submit" value="Eliminar" data-bs-toggle="eliminarmodal" data-bs-target="#eliminarmodal">
+                        </form> --}}
                     </li>
                 </ul>
             </div>
