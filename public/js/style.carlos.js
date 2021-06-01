@@ -56,7 +56,7 @@ const agregar = (str) =>{
     <div class="card card-mod">
     <img src="{{ asset('../img/prueba.jpg') }}" alt="">
     <div class="opacidad">
-        <p>${formulario.descripcion}</p>
+        <p>${str}</p>
     </div>
     <div class="btn-group dropend">
         <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
