@@ -24,3 +24,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', DashboardCont
 Route::middleware(['auth:sanctum', 'verified'])->resource('formulario', FormsController::class)->names('Admin.Forms');
 
 Route::middleware(['auth:sanctum', 'verified'])->resource('formulario/preguntas', PreguntasController::class)->names('Admin.Preguntas');    
+

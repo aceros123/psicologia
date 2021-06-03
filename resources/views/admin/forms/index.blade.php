@@ -29,8 +29,8 @@
             <div class="modal-body">
                 <form>
                     <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Titulo</label>
-                        <input type="text" class="form-control" id="recipient-name">
+                        <label for="descripcion" class="col-form-label">Titulo</label>
+                        <input type="text" class="form-control" id="descripcion">
                     </div>
                     <div class="mb-3">
                         <label for="message-text" class="col-form-label">Slug</label>
@@ -41,12 +41,42 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+
                 <button type="button" class="btn btn-primary" id="Guardar-formulario">Guardar formulario</button>
             </div>
         </div>
     </div>
 </div>
+{{-- editar --}}
+<div class="modal fade" id="exampleModaleditar" tabindex="-1" aria-labelledby="exampleModalLabeleditar" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="descripcion" class="col-form-label">Titulo</label>
+                        <input type="text" class="form-control" id="descripcionE">
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Slug</label>
+                        <input class="form-control" id="slugE" disabled="true"></input>
+                        <span id="taskError" class="alert-message"></span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 
+                <button type="button" class="btn btn-primary" onclick="editForm()">Editar formulario</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- fin editar --}}
 <section class="list" id="list">
     <div class="contenedor grid-4">
         <div class="card card-mod" id="crear-form" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="Formulario">
@@ -59,6 +89,7 @@
         </a> --}}
         <!-- tarjeta a repetir -->
         @foreach ($formularios as $formulario)
+
         <div class="card card-mod">
             <img src="{{ asset('img/prueba.jpg') }}" alt="">
             <div class="opacidad">
@@ -70,15 +101,18 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li>
-                        <a class="dropdown-item" href="{{route('Admin.Forms.edit', $formulario)}}">Editar</a>
+                        <a class="dropdown-item" type="submit" id="editar" data-id="{{$formulario}}" data-bs-toggle="modal" data-bs-target="#exampleModaleditar" data-bs-whatever="Editar formulario">Editar</a>
+                        
+                        {{-- href="{{route('Admin.Forms.edit', $formulario)}} --}}
                     </li>
                     <li>
-                        <a class="dropdown-item" onclick="deleteForm({{$formulario}})" id="#deleteform" data-bs-toggle="eliminarmodal" data-bs-target="#eliminarmodal">Eliminar</a>
+                        <a class="dropdown-item formulario-eliminar" type="submit"  onclick="deleteForm({{$formulario}})" data-bs-toggle="eliminarmodal" data-bs-target="#eliminarmodal">Eliminar</a>
                         {{-- <form action="{{route('Admin.Forms.destroy', $formulario)}}" method="post" class="formulario-eliminar">
+                           <p> {{ route('Admin.Forms.destroy', $formulario) }}</p>
                             @csrf
                             @method('delete')
                             <input class="dropdown-item" type="submit" value="Eliminar" data-bs-toggle="eliminarmodal" data-bs-target="#eliminarmodal">
-                        </form> --}}
+                        </form>  --}}
                     </li>
                 </ul>
             </div>

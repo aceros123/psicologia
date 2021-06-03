@@ -14,8 +14,8 @@
         <div class="card-body">
             {!! Form::open(['route' => 'Admin.Forms.store']) !!}
             <div class="form-group">
-                {!! Form::label('descripcion', 'Descripcion') !!}
-                {!! Form::text('descripcion', null, ['class' => 'form-control', 'placeholder'=> 'ingrese la descripcion del formulario']) !!}
+                {!! Form::label('recipient-name', 'Descripcion') !!}
+                {!! Form::text('recipient-name', null, ['class' => 'form-control', 'placeholder'=> 'ingrese la descripcion del formulario']) !!}
             
                 @error('name')
                     <span class="text-danger">{{$message}}</span>

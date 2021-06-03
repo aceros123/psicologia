@@ -89,8 +89,8 @@ class FormsController extends Controller
             'slug' => 'required|unique:formularios'
         ]);
         $formulario->update($request->all());
-        return response()->json($formulario);
-       // return redirect()->route('Admin.Forms.edit', $formulario)->with('info',  'El formulario ha sido actualizado con exito');
+       // return response()->json($formulario);
+        return redirect()->route('Admin.Forms.edit', $formulario)->with('info',  'El formulario ha sido actualizado con exito');
     }
 
     /**
@@ -102,7 +102,11 @@ class FormsController extends Controller
     public function destroy(formulario $formulario)
     {
         $formulario->delete();
-        return response()->json($formulario);
+        return response()->json([
+            
+            'message' => 'Data deleted successfully!'
+            
+          ]);
        // return redirect()->route('Admin.Forms.index');
     }
 }
