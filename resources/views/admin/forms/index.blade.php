@@ -102,7 +102,6 @@
                 <ul class="dropdown-menu">
                     <li>
                         <a class="dropdown-item" type="submit" id="editar" data-id="{{$formulario}}" data-bs-toggle="modal" data-bs-target="#exampleModaleditar" data-bs-whatever="Editar formulario">Editar</a>
-                        
                         {{-- href="{{route('Admin.Forms.edit', $formulario)}} --}}
                     </li>
                     <li>

@@ -6,6 +6,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Admin\FormsController;
 use App\Http\Controllers\Admin\PreguntasController;
+use App\Http\Controllers\InfPsicologicoController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,3 +27,4 @@ Route::middleware(['auth:sanctum', 'verified'])->resource('formulario', FormsCon
 
 Route::middleware(['auth:sanctum', 'verified'])->resource('formulario/preguntas', PreguntasController::class)->names('Admin.Preguntas');    
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/informepsicologico', InfPsicologicoController::class)->name('Admin.InfPsicologico');

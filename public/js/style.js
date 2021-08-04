@@ -45,7 +45,7 @@ if (guardar_formulario) {
             dataType: "json",
             success: function (data) {
                 formulario = data
-                $('#list').append(`
+                $('#list').prepend(`
                 <div class="card card-mod">
                 <img src="{{ asset('../img/prueba.jpg') }}" alt="">
                 <div class="opacidad">
@@ -163,13 +163,13 @@ if (guardar_formulario) {
     function editForm(formulario) {
         let slug = `${formulario.slug}`;
         let token = $('meta[name="csrf-token"]').attr('content');
-        let url = `formulario/` + slug + `/edit`;
+        let url = `formulario/` + slug ;
 
         fetch(url, {
             headers: {
                 'X-CSRF-TOKEN': token
             },
-            method: 'GET|HEAD',
+            method: 'PUT',
             body: {
                 descripcion: "hola",
                 slug: "hola"
